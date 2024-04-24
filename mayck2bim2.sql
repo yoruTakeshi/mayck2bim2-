@@ -1,6 +1,8 @@
+use db1;
+
 #1:
 
-SELECT count(produto_id) FROM produtos;
+SELECT count(nome) FROM produtos;
 
 #2:
 
@@ -17,18 +19,21 @@ WHERE preco BETWEEN 50 and 150;
 
 #5:
 SELECT nome, preco FROM produtos
-ORDER BY preco desc
+ORDER BY preco asc
 LIMIT 5;
 
 #6:
+SELECT nome FROM produtos
+WHERE qtd_estoque = 0;
 
 #7:
 SELECT nome, descricao FROM produtos
-WHERE descricao != null or descricao != '';
+WHERE descricao is not null or descricao != '';
 
 #8:
+
 SELECT nome, preco FROM produtos
-WHERE preco > AVG(preco);
+WHERE preco > (SELECT AVG(preco) FROM produtos);
 
 #9:
 SELECT * FROM produtos
@@ -39,7 +44,9 @@ SELECT nome, preco FROM produtos
 ORDER BY preco desc;
 
 #11:
-SELECT nome, preco
-WHERE preco % 2 = 0;
+SELECT nome, qtd_estoque FROM produtos
+WHERE qtd_estoque % 2 = 0;
 
 #12:
+SELECT nome, descricao FROM produtos
+WHERE preco < 100.00 AND qtd_estoque > 0;
